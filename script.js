@@ -27,25 +27,28 @@ restoreButton.onclick = function () {
 	}
 };
 
-// Add listener to mediaQueryList with corresponding callback function
-mediaQueryList.addListener(function (mql) {
-	// If screen resolution is less than 800px, add mobile class and remove desktop class
+// Add listener to mediaQueryList to call makeResponsive function upon crossing breakpoint
+mediaQueryList.addListener(makeResponsive);
+
+function makeResponsive(mql) {
+	// If screen resolution is less than 800px, remove desktop class
 	if (!mql.matches) {
-		flexContainer.classList.add('d-sm-flex');
 		flexContainer.classList.remove('d-flex');
-		// If screen resolution is at least 800px, add desktop class and remove mobile class
+		// If screen resolution is at least 800px, add desktop class
 	} else {
 		flexContainer.classList.add('d-flex');
-		flexContainer.classList.remove('d-sm-flex');
 		// Loop through cards and add 5px margins all around
 		for (let card of cards) {
 			card.style.margin = '5px';
 		}
 	}
-});
+}
+
+// Call makeResponsive function at run time
+makeResponsive(mediaQueryList);
 
 // Set onclick property of greyBtn to anonymous function
-greyBtn.onclick = function () {
+greyBtn.onclick = function() {
 	// Loop through images and ensure proper filter classes are active
 	for (let image of images) {
 		if (image.classList.contains('blur') && !image.classList.contains('greyscale'))
@@ -64,7 +67,8 @@ greyBtn.onclick = function () {
 blurBtn.onclick = function () {
 	// Loop through images and ensure proper filter classes are active
 	for (let image of images) {
-		if (image.classList.contains('greyscale')) image.classList.toggle('blur-greyscale');
+		if (image.classList.contains('greyscale'))
+			image.classList.toggle('blur-greyscale');
 		else if (image.classList.contains('blur-greyscale')) {
 			image.classList.toggle('blur-greyscale');
 			image.classList.toggle('greyscale');
