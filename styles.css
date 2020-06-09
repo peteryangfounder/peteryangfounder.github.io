@@ -1,0 +1,158 @@
+/* Title */
+
+h1 {
+	font-weight: bold !important;
+	margin-top: -10px;
+}
+
+
+/* Jumbotron */
+
+.jumbotron {
+	background-color: white;
+	text-align: center;
+}
+
+
+/* Flex container */
+
+.p-2 {
+	padding: 0 !important;
+	margin-top: 30px;
+}
+
+
+/* Alert with name */
+
+.alert {
+	max-width: 225px;
+	margin: 0 auto;
+	margin-top: 30px !important;
+}
+
+
+/* Card */
+
+.card {
+	border: none !important;
+	box-shadow: 0 25px 70px rgba(0, 0, 0, 0.07);
+	border-radius: 10px;
+	cursor: pointer;
+	transition: transform .2s;
+	margin: 0 auto !important;
+}
+
+
+/* Card on hover */
+
+.card:hover {
+	transform: scale(1.03);
+	box-shadow: 0 25px 70px rgba(237, 83, 36, 0.2);
+}
+
+
+/* Button */
+
+.btn {
+	margin: 0 auto;
+	margin-top: 30px !important;
+}
+
+
+/* Grey outline button */
+
+.btn-outline-secondary {
+	display: block;
+}
+
+
+/* Review stars */
+
+h6 {
+	color: rgb(255, 195, 77);
+}
+
+
+/* Review count */
+
+h6 span {
+	color: black;
+	font-weight: 300;
+	font-size: small;
+}
+
+
+/* Quotes */
+
+.card-text {
+	color: black;
+	font-weight: 300;
+}
+
+
+/* Genre */
+
+#grey {
+	color: grey;
+	font-weight: 400;
+}
+
+
+/* Navbar items */
+
+li a {
+	color: white !important;
+	font-weight: 300;
+}
+
+
+/* Navbar logo */
+
+.navbar-brand {
+	color: white !important;
+	font-weight: bold;
+}
+
+
+/* Blur effect */
+
+.blur {
+	-webkit-filter: blur(2px);
+	filter: blur(2px);
+}
+
+
+/* Greyscale effect */
+
+.greyscale {
+	-webkit-filter: blur(2px) grayscale(100%);
+	filter: grayscale(100%);
+}
+
+
+/* Combined effect */
+
+.blur-greyscale {
+	-webkit-filter: blur(2px) grayscale(100%);
+	filter: blur(2px) grayscale(100%);
+}
+
+
+/* Greyscale and blur buttons */
+
+#greyscale,
+#blur {
+	display: inline;
+}
+
+
+/* Gradient navbar background */
+
+.bg-primary {
+	background: #FF5F6D;
+	/* Fallback for old browsers */
+	background: -webkit-linear-gradient(to right, #FFC371, #FF5F6D);
+	/* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(to right, #FFC371, #FF5F6D);
+	/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
