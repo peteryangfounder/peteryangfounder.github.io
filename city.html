@@ -1,80 +1,108 @@
-// Store DOM elements for later use
-const cards = document.querySelectorAll('.card');
-const images = document.querySelectorAll('img');
-const restoreButton = document.querySelector('.btn-success');
-const mediaQueryList = window.matchMedia('(min-width: 800px)');
-const flexContainer = document.querySelector('.p-2');
-const greyBtn = document.querySelector('#greyscale');
-const blurBtn = document.querySelector('#blur');
-
-// Add event listeners to each card using loop to hide upon click
-for (let card of cards) {
-	card.addEventListener('click', function () {
-		this.style.display = 'none';
-	});
-}
-
-// Set onclick property of restoreButton to anonymous function
-restoreButton.onclick = function () {
-	// First loop makes cards reappear on screen
-	for (let card of cards) {
-		card.style.display = 'block';
-	}
-	// Second loop removes all classes from image nodes and then adds the "card-img-top" Bootstrap default class to each
-	for (let image of images) {
-		image.className = '';
-		image.classList.add('card-img-top');
-	}
-};
-
-// Add listener to mediaQueryList to call makeResponsive function upon crossing breakpoint
-mediaQueryList.addListener(makeResponsive);
-
-function makeResponsive(mql) {
-	// If screen resolution is less than 800px, remove desktop class
-	if (!mql.matches) {
-		flexContainer.classList.remove('d-flex');
-		// If screen resolution is at least 800px, add desktop class
-	} else {
-		flexContainer.classList.add('d-flex');
-		// Loop through cards and add 5px margins all around
-		for (let card of cards) {
-			card.style.margin = '5px';
-		}
-	}
-}
-
-// Call makeResponsive function at run time
-makeResponsive(mediaQueryList);
-
-// Set onclick property of greyBtn to anonymous function
-greyBtn.onclick = function() {
-	// Loop through images and ensure proper filter classes are active
-	for (let image of images) {
-		if (image.classList.contains('blur') && !image.classList.contains('greyscale'))
-			image.classList.toggle('blur-greyscale');
-		else if (image.classList.contains('blur-greyscale')) {
-			image.classList.toggle('blur-greyscale');
-			image.classList.toggle('greyscale');
-			image.classList.toggle('blur');
-		} else {
-			image.classList.toggle('greyscale');
-		}
-	}
-};
-
-// Set onclick property of blurBtn to anonymous function
-blurBtn.onclick = function () {
-	// Loop through images and ensure proper filter classes are active
-	for (let image of images) {
-		if (image.classList.contains('greyscale'))
-			image.classList.toggle('blur-greyscale');
-		else if (image.classList.contains('blur-greyscale')) {
-			image.classList.toggle('blur-greyscale');
-			image.classList.toggle('greyscale');
-			image.classList.toggle('blur');
-		} else {
-			image.classList.toggle('blur');
-		}
-	}
-};
+<!DOCTYPE html>
+<html lang="en">
+   <!-- Metadata -->
+   <head>
+      <!-- Set viewport to device width to ensure mobile optimization -->
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <!-- Include custom favicon -->
+      <link rel="icon" type="image/png" href="images/favicon.png"/>
+      <!-- Include Bootstrap CDN and local stylesheet -->
+      <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
+      <link href="styles.css" rel="stylesheet">
+      <title>Image Fire | City</title>
+   </head>
+   <body>
+      <!-- Navigation menu -->
+      <nav class="navbar navbar-expand-lg navbar-light bg-primary">
+         <a class="navbar-brand" href="index.html">
+            image fire
+            <ion-icon name="flame"></ion-icon>
+         </a>
+         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+         <span class="navbar-toggler-icon"></span>
+         </button>
+         <div class="collapse navbar-collapse" id="navbarNav">
+            <!-- Menu items -->
+            <ul class="navbar-nav">
+               <li class="nav-item">
+                  <a class="nav-link" href="index.html">landscape</a>
+               </li>
+               <li class="nav-item">
+                  <a class="nav-link" href="city.html">city</a>
+               </li>
+               <li class="nav-item">
+                  <a class="nav-link" href="fantasy.html">fantasy</a>
+               </li>
+               <li class="nav-item">
+                  <a class="nav-link" href="people.html">people</a>
+               </li>
+            </ul>
+         </div>
+      </nav>
+      <!-- Jumbotron -->
+      <div class="jumbotron">
+      <!-- Title -->
+      <h1 class="display-4">image fire
+         <span id="grey">
+         <i>city</i>
+         </span>
+      </h1>
+      <!-- (Hardcoded) reviews -->
+      <h6>
+         <ion-icon name="star"></ion-icon>
+         <ion-icon name="star"></ion-icon>
+         <ion-icon name="star"></ion-icon>
+         <ion-icon name="star"></ion-icon>
+         <ion-icon name="star"></ion-icon>
+         <span>67 reviews</span>
+      </h6>
+      <!-- Flex container holding cards (image + quote) -->
+      <div class="d-flex p-2 bd-highlight">
+         <div draggable="true" class="card" style="width: 18rem;">
+            <img src="images/4.jpg" class="card-img-top" alt="...">
+            <div class="card-body">
+               <p class="card-text">“Be who you are and say what you feel, because those who mind don't matter, and
+                  those who matter don't mind.”
+               </p>
+            </div>
+         </div>
+         <div class="card" style="width: 18rem;">
+            <img src="images/5.jpg" class="card-img-top" alt="...">
+            <div class="card-body">
+               <p class="card-text">“In three words I can sum up everything I've learned about life: it goes on.”
+               </p>
+            </div>
+         </div>
+         <div class="card" style="width: 18rem;">
+            <img src="images/6.jpg" class="card-img-top" alt="...">
+            <div class="card-body">
+               <p class="card-text">“To live is the rarest thing in the world. Most people exist, that is all.”</p>
+            </div>
+         </div>
+      </div>
+      <!-- Button to grey filter images -->
+      <button id="greyscale" type="button" class="btn btn-outline-secondary">
+      Greyscale
+      </button>
+      <!-- Button to blur filter images -->
+      <button id="blur" type="button" class="btn btn-outline-secondary">
+      Blur
+      </button>
+      <!-- Button to restore images -->
+      <button type="button" class="btn btn-success">
+         Restore Images
+         <ion-icon name="color-wand-outline"></ion-icon>
+      </button>
+      <!-- Alert -->
+      <div class="alert alert-warning" role="alert">
+         by Peter Yang | June 2020
+      </div>
+      <!-- Include local script and JS libraries -->
+      <script src="script.js"></script>
+      <script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+   </body>
+</html>
